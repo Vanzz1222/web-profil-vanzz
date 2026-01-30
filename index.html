@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Profil | Revan</title>
+
+<style>
+* {
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  color: white;
+  background: linear-gradient(270deg, #020617, #0f172a, #020617);
+  background-size: 600% 600%;
+  animation: bgMove 12s ease infinite;
+}
+
+/* BACKGROUND */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* HEADER */
+header {
+  text-align: center;
+  padding: 50px 20px;
+  animation: slideDown 1s ease;
+}
+
+header img {
+  width: 140px;
+  border-radius: 50%;
+  border: 4px solid #38bdf8;
+  transition: transform 0.4s;
+}
+
+header img:hover {
+  transform: scale(1.05);
+}
+
+header p {
+  color: #38bdf8;
+}
+
+/* CARD */
+.card {
+  background: #020617;
+  margin: 20px auto;
+  padding: 20px;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(56,189,248,0.15);
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(56,189,248,0.35);
+}
+
+.card h2 {
+  color: #38bdf8;
+}
+
+/* SCROLL ANIMATION */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* CURSOR */
+.cursor {
+  width: 15px;
+  height: 15px;
+  border: 2px solid #38bdf8;
+  border-radius: 50%;
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: 0.05s;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  color: #94a3b8;
+}
+
+/* ANIMASI */
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+  .cursor { display: none; }
+  header { animation: fadeUp 1s ease; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <img src="foto.jpg">
+  <h1>Revan Ganda Saputra</h1>
+  <p>Pelajar SMK • XI TKJ</p>
+</header>
+
+<section class="card reveal">
+  <h2>👤 Tentang Saya</h2>
+  <p>Saya pelajar TKJ yang tertarik dengan teknologi dan website.</p>
+</section>
+
+<section class="card reveal">
+  <h2>💡 Keahlian</h2>
+  <ul>
+    <li>HTML & CSS</li>
+    <li>Jaringan Komputer</li>
+    <li>IT Dasar</li>
+  </ul>
+</section>
+
+<section class="card reveal">
+  <h2>📞 Kontak</h2>
+  <p>Email: revan@gmail.com</p>
+  <p>Instagram: @revan</p>
+</section>
+
+<footer>
+  © 2026 Revan • Web Pribadi
+</footer>
+
+<!-- AUDIO -->
+<audio id="clickSound" src="click.mp3"></audio>
+
+<script>
+// SCROLL ANIMATION
+window.addEventListener("scroll", () => {
+  document.querySelectorAll(".reveal").forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight - 100) {
+      el.classList.add("active");
+    }
+  });
+});
+
+// CURSOR
+const cursor = document.createElement("div");
+cursor.className = "cursor";
+document.body.appendChild(cursor);
+
+document.addEventListener("mousemove", e => {
+  cursor.style.left = e.pageX + "px";
+  cursor.style.top = e.pageY + "px";
+});
+
+// CLICK SOUND
+const sound = document.getElementById("clickSound");
+document.addEventListener("click", () => {
+  sound.currentTime = 0;
+  sound.play();
+});
+</script>
+
+</body>
+</html>
+
